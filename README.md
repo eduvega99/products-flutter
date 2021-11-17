@@ -2,13 +2,24 @@
 
 A new Flutter project to improve my development skills with Flutter.
 
-## Getting Started
+## Services
 
-At this point in the development of the application it only implements the login screen and adds a controller for the login of user, validating the correct format of the inputs in the form.
+List of services used:
+
+- **Firebase - Realtime Database.** To storage all information about products.
+- **Cloudinary** To upload product images.
+
+
+## Implementations
+
+At this point in the application development I've implemented:
+
+- **Login Controller.** To validate all the inputs data in the form.
+- **CRUD towards REST service.** Create, read and update products in firebase. Also upload images to Cloudinary.
+- **Camera and galery.** To take products photos.
 
 ## Next Steps
 
 The next objectives are:
 
-- Implement CRUD towards REST services
-- Work with the use of camera and images galery
+- Implement user authentication via firebase and use tokens in our services.
