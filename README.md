@@ -8,7 +8,7 @@ This application simulate a product store. Users can create, update and see the 
 
 List of services used:
 
-- **Firebase - Realtime Database.** To storage all information about products.
+- **Firebase - Realtime Database.** To store all information about products.
 - **Firebase - Authentication.** To control authentication user.
 - **Cloudinary** To upload product images.
 
