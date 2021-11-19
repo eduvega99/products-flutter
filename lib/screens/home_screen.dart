@@ -12,23 +12,33 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    final productsServices = Provider.of<ProductsService>(context);
+    final productsService = Provider.of<ProductsService>(context);
+    final authService = Provider.of<AuthService>(context, listen: false);
 
-    if (productsServices.isLoading) return LoadingScreen();
+    if (productsService.isLoading) return LoadingScreen();
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Productos'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              authService.logout();
+              Navigator.pushReplacementNamed(context, 'login');
+            }, 
+            icon: Icon(Icons.logout, color: Colors.white)
+          )
+        ],
       ),
       body: RefreshIndicator(
-        onRefresh: productsServices.loadProducts,
+        onRefresh: productsService.loadProducts,
         child: ListView.builder(
           physics: BouncingScrollPhysics(),
-          itemCount: productsServices.products.length,
+          itemCount: productsService.products.length,
           itemBuilder: ( BuildContext context, int index ) => GestureDetector(
-            child: ProductCard(product: productsServices.products[index]),
+            child: ProductCard(product: productsService.products[index]),
             onTap: () {
-              productsServices.selectedProduct = productsServices.products[index].copy();
+              productsService.selectedProduct = productsService.products[index].copy();
               Navigator.pushNamed(context, 'product');
             }
           ) 
@@ -37,7 +47,7 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          productsServices.selectedProduct = new Product(available: false, name: '', price: 0);
+          productsService.selectedProduct = new Product(available: false, name: '', price: 0);
           Navigator.pushNamed(context, 'product');
         }
       ),
